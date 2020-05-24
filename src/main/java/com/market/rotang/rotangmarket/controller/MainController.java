@@ -26,9 +26,9 @@ public class MainController {
         return "product-details";
     }
 
-    @GetMapping("/chart")
-    public String chart() {
-        return "chart";
+    @GetMapping("/cart")
+    public String cart() {
+        return "cart";
     }
 
 }
