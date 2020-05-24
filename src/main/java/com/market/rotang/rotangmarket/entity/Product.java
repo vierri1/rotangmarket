@@ -16,8 +16,7 @@ import java.util.List;
 @Entity
 public class Product {
     @Id
-    @SequenceGenerator(name = "productSeq", sequenceName = "PRODUCT_SEQ")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "productSeq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
     public Long categoryId;
     @Column(unique = true)
