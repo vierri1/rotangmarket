@@ -15,9 +15,9 @@ import javax.persistence.*;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
     @Column(unique = true)
-    public String name;
-    public String description;
-    public String image;
+    private String name;
+    private String description;
+    private String image;
 }

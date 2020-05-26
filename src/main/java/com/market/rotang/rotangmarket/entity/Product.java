@@ -17,14 +17,16 @@ import java.util.List;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
-    public Long categoryId;
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
     @Column(unique = true)
-    public String name;
-    public String description;
-    public BigDecimal price;
+    private String name;
+    private String description;
+    private BigDecimal price;
     @OneToMany(mappedBy = "productId")
-    public List<ProductImage> images;
+    private List<ProductImage> images;
 }
 
 
