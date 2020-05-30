@@ -19,13 +19,18 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
+
     @Column(unique = true)
     private String name;
+
     private String description;
+
     private BigDecimal price;
+
     @OneToMany(mappedBy = "productId", fetch = FetchType.EAGER)
     private List<ProductImage> images;
 

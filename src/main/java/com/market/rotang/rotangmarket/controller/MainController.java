@@ -43,6 +43,7 @@ public class MainController {
     @GetMapping("/product-details/{id}")
     public String productDetails(@PathVariable Long id,
                                  Model model) {
+        model.addAttribute("product", productService.get(id));
         return "product-details";
     }
 
