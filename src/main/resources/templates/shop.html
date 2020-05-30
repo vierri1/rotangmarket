@@ -9,7 +9,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>Amado - Furniture Ecommerce Template | Shop</title>
+    <title>Продажа мебели из ротанга | Товары</title>
 
     <!-- Favicon  -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -134,15 +134,15 @@
             </div>
 
             <div class="row">
-
                 <!-- Single Product Area -->
-                <div class="col-12 col-sm-6 col-md-12 col-xl-6">
+                <div th:each="product : ${products}" class="col-12 col-sm-6 col-md-12 col-xl-6">
                     <div class="single-product-wrapper">
                         <!-- Product ProductImage -->
                         <div class="product-img">
-                            <img src="img/product-img/kashpo.jpg" alt="">
+                            <img th:src="@{'img/product-img/' + ${product.getMainImage().getName()}}" alt="">
                             <!-- Hover Thumb -->
-                            <img class="hover-img" src="img/product-img/kashpo2.jpg" alt="">
+                            <img class="hover-img" th:src="@{'img/product-img/' + ${product.getAltImage().getName()}}"
+                                 alt="">
                         </div>
 
                         <!-- Product Description -->
@@ -150,214 +150,15 @@
                             <!-- Product Meta Data -->
                             <div class="product-meta-data">
                                 <div class="line"></div>
-                                <p class="product-price">Миллион рублей</p>
-                                <a href="product-details">
-                                    <h6>Модное кашпо</h6>
+                                <p class="product-price" th:text="${'₽' + product.price}"></p>
+                                <a th:href="@{'product-details/' + ${product.id}}">
+                                    <h6 th:text="${product.name}"></h6>
                                 </a>
                             </div>
                             <!-- Ratings & Cart -->
-                            <div class="ratings-cart text-right">
-                                <div class="ratings">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                </div>
-                                <div class="cart">
-                                    <a href="cart" data-toggle="tooltip" data-placement="left" title="Купить"><img
-                                            src="img/core-img/cart.png" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Product Area -->
-                <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                    <div class="single-product-wrapper">
-                        <!-- Product ProductImage -->
-                        <div class="product-img">
-                            <img src="img/product-img/product2.jpg" alt="">
-                            <!-- Hover Thumb -->
-                            <img class="hover-img" src="img/product-img/product3.jpg" alt="">
-                        </div>
-
-                        <!-- Product Description -->
-                        <div class="product-description d-flex align-items-center justify-content-between">
-                            <!-- Product Meta Data -->
-                            <div class="product-meta-data">
-                                <div class="line"></div>
-                                <p class="product-price">$180</p>
-                                <a href="product-details">
-                                    <h6>Modern Chair</h6>
-                                </a>
-                            </div>
-                            <!-- Ratings & Cart -->
-                            <div class="ratings-cart text-right">
-                                <div class="ratings">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                </div>
-                                <div class="cart">
-                                    <a href="cart" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img
-                                            src="img/core-img/cart.png" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Product Area -->
-                <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                    <div class="single-product-wrapper">
-                        <!-- Product ProductImage -->
-                        <div class="product-img">
-                            <img src="img/product-img/product3.jpg" alt="">
-                            <!-- Hover Thumb -->
-                            <img class="hover-img" src="img/product-img/product4.jpg" alt="">
-                        </div>
-
-                        <!-- Product Description -->
-                        <div class="product-description d-flex align-items-center justify-content-between">
-                            <!-- Product Meta Data -->
-                            <div class="product-meta-data">
-                                <div class="line"></div>
-                                <p class="product-price">$180</p>
-                                <a href="product-details">
-                                    <h6>Modern Chair</h6>
-                                </a>
-                            </div>
-                            <!-- Ratings & Cart -->
-                            <div class="ratings-cart text-right">
-                                <div class="ratings">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                </div>
-                                <div class="cart">
-                                    <a href="cart" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img
-                                            src="img/core-img/cart.png" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Product Area -->
-                <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                    <div class="single-product-wrapper">
-                        <!-- Product ProductImage -->
-                        <div class="product-img">
-                            <img src="img/product-img/product4.jpg" alt="">
-                            <!-- Hover Thumb -->
-                            <img class="hover-img" src="img/product-img/product5.jpg" alt="">
-                        </div>
-
-                        <!-- Product Description -->
-                        <div class="product-description d-flex align-items-center justify-content-between">
-                            <!-- Product Meta Data -->
-                            <div class="product-meta-data">
-                                <div class="line"></div>
-                                <p class="product-price">$180</p>
-                                <a href="product-details">
-                                    <h6>Modern Chair</h6>
-                                </a>
-                            </div>
-                            <!-- Ratings & Cart -->
-                            <div class="ratings-cart text-right">
-                                <div class="ratings">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                </div>
-                                <div class="cart">
-                                    <a href="cart" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img
-                                            src="img/core-img/cart.png" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Product Area -->
-                <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                    <div class="single-product-wrapper">
-                        <!-- Product ProductImage -->
-                        <div class="product-img">
-                            <img src="img/product-img/product5.jpg" alt="">
-                            <!-- Hover Thumb -->
-                            <img class="hover-img" src="img/product-img/product6.jpg" alt="">
-                        </div>
-
-                        <!-- Product Description -->
-                        <div class="product-description d-flex align-items-center justify-content-between">
-                            <!-- Product Meta Data -->
-                            <div class="product-meta-data">
-                                <div class="line"></div>
-                                <p class="product-price">$180</p>
-                                <a href="product-details">
-                                    <h6>Modern Chair</h6>
-                                </a>
-                            </div>
-                            <!-- Ratings & Cart -->
-                            <div class="ratings-cart text-right">
-                                <div class="ratings">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                </div>
-                                <div class="cart">
-                                    <a href="cart" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img
-                                            src="img/core-img/cart.png" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Product Area -->
-                <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                    <div class="single-product-wrapper">
-                        <!-- Product ProductImage -->
-                        <div class="product-img">
-                            <img src="img/product-img/product6.jpg" alt="">
-                            <!-- Hover Thumb -->
-                            <img class="hover-img" src="img/product-img/product1.jpg" alt="">
-                        </div>
-
-                        <!-- Product Description -->
-                        <div class="product-description d-flex align-items-center justify-content-between">
-                            <!-- Product Meta Data -->
-                            <div class="product-meta-data">
-                                <div class="line"></div>
-                                <p class="product-price">$180</p>
-                                <a href="product-details">
-                                    <h6>Modern Chair</h6>
-                                </a>
-                            </div>
-                            <!-- Ratings & Cart -->
-                            <div class="ratings-cart text-right">
-                                <div class="ratings">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                </div>
-                                <div class="cart">
-                                    <a href="cart" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img
-                                            src="img/core-img/cart.png" alt=""></a>
-                                </div>
+                            <div class="cart">
+                                <a href="cart" data-toggle="tooltip" data-placement="left" title="Купить"><img
+                                        src="img/core-img/cart.png" alt=""></a>
                             </div>
                         </div>
                     </div>
