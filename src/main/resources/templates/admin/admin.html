@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+</head>
+<body>
+<p th:hidden="${msg == null}" th:text="${msg}"></p>
+<table border="1">
+    <caption>Список категорий</caption>
+    <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Описание</th>
+        <th>Картинка</th>
+        <th></th>
+    </tr>
+    <tr th:each="category : ${categories}">
+        <td><span th:text="${category.id}"></span></td>
+        <td><a th:href="@{'/admin/category/edit/' + ${category.id}}" th:text="${category.name}"></a></td>
+        <td><span th:text="${category.description}"></span></td>
+        <td><img th:src="@{'/img/cat-img/' + ${category.image}}" th:height="125" alt=""></td>
+        <td><a th:text="Удалить" th:href="@{'/admin/category/delete/' + ${category.id}}"></a></td>
+    </tr>
+</table>
+<a th:text="Добавить" th:href="@{'/admin/category/add'}"></a>
+</body>
+</html>

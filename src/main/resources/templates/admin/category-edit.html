@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${(action.equals('edit') ? 'Редактирование' : 'Добавление новой') + ' категории'}"></title>
+</head>
+<body>
+
+<a th:href="@{'/admin'}">Список категрий</a>
+<form th:action="@{'/admin/category/' + ${action}}" method="post">
+    <label th:if="${action.equals('edit')}">ID
+        <input readonly th:name="id" th:value="${category.id}"></label><br/>
+    <label>Название<input th:name="name" th:value="${category.name}"></label><br/>
+    <label>Описание<input th:name="description" th:value="${category.description}"></label><br/>
+    <label>Картинка<input th:name="image" th:value="${category.image}"></label><br/>
+    <img th:if="${action.equals('edit')}"
+         th:src="@{'/img/cat-img/' + ${category.image}}" th:height="255" alt=""><br/>
+    <input th:type="submit" th:value="Сохранить"/>
+</form>
+
+</body>
+</html>
