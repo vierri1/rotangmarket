@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<a th:href="@{'/admin'}">Список категрий</a>
+<a th:href="@{'/admin/category/all'}">Список категрий</a>
 <form th:action="@{'/admin/category/' + ${action}}" method="post">
     <label th:if="${action.equals('edit')}">ID
         <input readonly th:name="id" th:value="${category.id}"></label><br/>
