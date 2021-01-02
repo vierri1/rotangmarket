@@ -31,6 +31,8 @@ public class Product {
 
     private BigDecimal price;
 
+    private Boolean stock;
+
     @OneToMany(mappedBy = "productId", fetch = FetchType.EAGER)
     private List<ProductImage> images;
 

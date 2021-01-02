@@ -151,7 +151,7 @@
                             <div class="product-meta-data">
                                 <div class="line"></div>
                                 <p class="product-price" th:text="${'₽' + product.price}"></p>
-                                <a th:href="@{'product-details/' + ${product.id}}">
+                                <a th:href="@{product-details(id = ${product.id})}">
                                     <h6 th:text="${product.name}"></h6>
                                 </a>
                             </div>
