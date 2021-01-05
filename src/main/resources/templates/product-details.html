@@ -69,14 +69,14 @@
                                     <li th:each="image,iter : ${product.images}"
                                         th:class="iter.index == 0 ? 'active' : ''"
                                         data-target="#product_details_slider" th:data-slide-to="${iter.index}"
-                                        th:style="${'background-image: url(img/product-img/' + image.name + ');'}">
+                                        th:style="${'background-image: url(image/' + image.name + ');'}">
                                     </li>
                                 </ol>
                                 <div class="carousel-inner">
                                     <div th:each="image,iter : ${product.images}"
                                          th:class="${iter.index == 0 ? 'carousel-item active' : 'carousel-item'}">
-                                        <a class="gallery_img" th:href="@{'img/product-img/' + ${image.name}}">
-                                            <img class="d-block w-100" th:src="@{'img/product-img/' + ${image.name}}" alt="First slide">
+                                        <a class="gallery_img" th:href="@{'image/' + ${image.name}}">
+                                            <img class="d-block w-100" th:src="@{'image/' + ${image.name}}" alt="First slide">
                                         </a>
                                     </div>
                                 </div>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование картинок</title>
+</head>
+    <body>
+        <a th:text="${'Панель администратора'}" th:href="@{'/admin'}"></a>
+        <p th:if="${msg != null}" th:text="${msg}"></p>
+        <p>Загрузить новое изображение</p>
+        <form th:action="@{'/admin/image/add'}" method="post" enctype="multipart/form-data">
+            <label><input name="image" th:type="file"></label>
+            <input th:type="submit" th:value="Загрузить"/>
+        </form>
+        <br/>
+        <table border="1">
+            <tr>
+                <th th:text="Имя"></th>
+                <th th:text="Картинка"></th>
+                <th></th>
+            </tr>
+            <tr th:each="imgName : ${imgNames}">
+                <td th:text="${imgName}"></td>
+                <td><img th:src="@{'/image/' + ${imgName}}" th:height="125" alt=""></td>
+                <td><a th:href="@{'/admin/image/delete/' + ${imgName}}" th:text="Удалить"></a></td>
+            </tr>
+        </table>
+    </body>
+</html>

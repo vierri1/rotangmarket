@@ -139,9 +139,9 @@
                     <div class="single-product-wrapper">
                         <!-- Product ProductImage -->
                         <div class="product-img">
-                            <img th:src="@{'img/product-img/' + ${product.getMainImage().getName()}}" alt="">
+                            <img th:src="@{'image/' + ${product.getMainImage().getName()}}" alt="">
                             <!-- Hover Thumb -->
-                            <img class="hover-img" th:src="@{'img/product-img/' + ${product.getAltImage().getName()}}"
+                            <img class="hover-img" th:src="@{'image/' + ${product.getAltImage().getName()}}"
                                  alt="">
                         </div>
 

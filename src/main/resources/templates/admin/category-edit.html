@@ -14,7 +14,7 @@
     <label>Описание<input th:name="description" th:value="${category.description}"></label><br/>
     <label>Картинка<input th:name="image" th:value="${category.image}"></label><br/>
     <img th:if="${action.equals('edit')}"
-         th:src="@{'/img/cat-img/' + ${category.image}}" th:height="255" alt=""><br/>
+         th:src="@{'/image/' + ${category.image}}" th:height="255" alt=""><br/>
     <input th:type="submit" th:value="Сохранить"/>
 </form>
 
