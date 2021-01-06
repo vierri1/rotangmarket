@@ -52,4 +52,12 @@ public class ImageAdminController {
         redirectAttributes.addAttribute("msg", msg);
         return "redirect:/admin/image/all";
     }
+
+    @GetMapping("category/{categoryId}")
+    public String setCategoryImage(@PathVariable String categoryId, Model model) {
+        model.addAttribute("imgNames", imageService.getNames());
+        model.addAttribute("categoryId", categoryId);
+        return "admin/set-image";
+    }
+
 }

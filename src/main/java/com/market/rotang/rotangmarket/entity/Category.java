@@ -10,6 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
+//todo do dto
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

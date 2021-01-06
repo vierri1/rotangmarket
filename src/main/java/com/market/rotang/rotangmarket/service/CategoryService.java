@@ -31,11 +31,10 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
-    public Category add(String name, String description, String image) {
+    public Category add(String name, String description) {
         return save(Category.builder()
                 .name(name)
                 .description(description)
-                .image(image)
                 .build());
     }
 

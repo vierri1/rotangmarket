@@ -12,11 +12,14 @@
         <input readonly th:name="id" th:value="${category.id}"></label><br/>
     <label>Название<input th:name="name" th:value="${category.name}"></label><br/>
     <label>Описание<input th:name="description" th:value="${category.description}"></label><br/>
-    <label>Картинка<input th:name="image" th:value="${category.image}"></label><br/>
-    <img th:if="${action.equals('edit')}"
-         th:src="@{'/image/' + ${category.image}}" th:height="255" alt=""><br/>
+    <div th:if="${action.equals('edit')}">
+        <input hidden readonly th:name="image" th:value="${category.image}"><br/>
+        <p th:text="${'Изображение: ' + category.image}"></p>
+        <img th:if="${action.equals('edit')}"
+             th:src="@{'/image/' + ${category.image}}" th:height="255" alt="Изображение не задано"><br/>
+        <a th:text="${'Выбрать другое изображение'}" th:href="@{'/admin/image/category/' + ${category.id}}"></a>
+    </div>
     <input th:type="submit" th:value="Сохранить"/>
 </form>
-
 </body>
 </html>

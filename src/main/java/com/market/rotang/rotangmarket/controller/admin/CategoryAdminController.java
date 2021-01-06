@@ -26,8 +26,16 @@ public class CategoryAdminController {
         return "admin/categories";
     }
     @GetMapping(value = "edit/{id}")
-    public String edit(@PathVariable Long id, Model model) {
-        model.addAttribute("category", categoryService.get(id));
+    public String edit(@PathVariable Long id,
+                       @RequestParam(required = false) String newImage,
+                       Model model) {
+        Category category = categoryService.get(id);
+
+        if (newImage != null) {
+            category.setImage(newImage);
+        }
+
+        model.addAttribute("category", category);
         model.addAttribute("action", "edit");
         return "admin/category-edit";
     }
@@ -51,9 +59,8 @@ public class CategoryAdminController {
     @PostMapping("add")
     public String save(@RequestParam String name,
                        @RequestParam String description,
-                       @RequestParam String image,
                        RedirectAttributes redirectAttributes) {
-        Category category = categoryService.add(name, description, image);
+        Category category = categoryService.add(name, description);
         redirectAttributes.addAttribute("msg",
                 String.format("Категория %s создана с id %d", name, category.getId()));
         return "redirect:/admin/category/all";
@@ -65,5 +72,13 @@ public class CategoryAdminController {
         redirectAttributes.addAttribute("msg",
                 String.format("Категория с id %d удалена", id));
         return "redirect:/admin/category/all";
+    }
+
+    @GetMapping("image/set")
+    public String setCategoryImage(@RequestParam Long categoryId,
+                                   @RequestParam String img,
+                                   RedirectAttributes redirectAttributes){
+        redirectAttributes.addAttribute("newImage", img);
+        return "redirect:/admin/category/edit/" + categoryId;
     }
 }
