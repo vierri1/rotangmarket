@@ -26,4 +26,8 @@ public class ProductService {
     public List<Product> getByCategory(Long categoryId) {
         return productRepository.getAllByCategoryId(categoryId);
     }
+
+    public Long getCountByCategory(Long categoryId) {
+        return productRepository.countByCategoryId(categoryId);
+    }
 }

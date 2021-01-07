@@ -4,6 +4,7 @@ import com.market.rotang.rotangmarket.entity.Category;
 import com.market.rotang.rotangmarket.exception.CategoryNotFoundException;
 import com.market.rotang.rotangmarket.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +14,13 @@ import java.util.List;
 public class CategoryService {
 
     private CategoryRepository categoryRepository;
+    private String defaultImage;
 
     @Autowired
-    public CategoryService(CategoryRepository categoryRepository) {
+    public CategoryService(CategoryRepository categoryRepository,
+                           @Value("${img.default}") String defaultImage) {
         this.categoryRepository = categoryRepository;
+        this.defaultImage = defaultImage;
     }
 
     public List<Category> getAll() {
@@ -28,6 +32,10 @@ public class CategoryService {
     }
 
     public Category save(Category category) {
+        if (category.getImage() == null) {
+            category.setImage(defaultImage);
+        }
+
         return categoryRepository.save(category);
     }
 

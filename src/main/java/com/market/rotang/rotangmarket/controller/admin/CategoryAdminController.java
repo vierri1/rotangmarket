@@ -2,6 +2,7 @@ package com.market.rotang.rotangmarket.controller.admin;
 
 import com.market.rotang.rotangmarket.entity.Category;
 import com.market.rotang.rotangmarket.service.CategoryService;
+import com.market.rotang.rotangmarket.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +14,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class CategoryAdminController {
 
     private CategoryService categoryService;
+    private ProductService productService;
 
     @Autowired
-    public CategoryAdminController(CategoryService categoryService) {
+    public CategoryAdminController(CategoryService categoryService,
+                                   ProductService productService) {
         this.categoryService = categoryService;
+        this.productService = productService;
     }
 
     @GetMapping("all")
@@ -25,6 +29,7 @@ public class CategoryAdminController {
         model.addAttribute("msg", msg);
         return "admin/categories";
     }
+
     @GetMapping(value = "edit/{id}")
     public String edit(@PathVariable Long id,
                        @RequestParam(required = false) String newImage,
@@ -68,16 +73,25 @@ public class CategoryAdminController {
 
     @GetMapping("delete/{id}")
     public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
-        categoryService.delete(id);
-        redirectAttributes.addAttribute("msg",
-                String.format("Категория с id %d удалена", id));
+        Long productCount = productService.getCountByCategory(id);
+
+        if (productCount > 0) {
+            redirectAttributes.addAttribute("msg",
+                    String.format("Категория %d не удалена, так как в ней содержаться продукты. " +
+                            "Перед удалением категории необходимо удалить все ее продукты", id));
+        } else {
+            categoryService.delete(id);
+            redirectAttributes.addAttribute("msg",
+                    String.format("Категория с id %d удалена", id));
+        }
+
         return "redirect:/admin/category/all";
     }
 
     @GetMapping("image/set")
     public String setCategoryImage(@RequestParam Long categoryId,
                                    @RequestParam String img,
-                                   RedirectAttributes redirectAttributes){
+                                   RedirectAttributes redirectAttributes) {
         redirectAttributes.addAttribute("newImage", img);
         return "redirect:/admin/category/edit/" + categoryId;
     }
