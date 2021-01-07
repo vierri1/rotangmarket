@@ -2,6 +2,7 @@ package com.market.rotang.rotangmarket.service;
 
 import com.market.rotang.rotangmarket.exception.ImageNotFoundException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,7 +16,11 @@ import java.util.List;
 @Slf4j
 public class ImageService {
 
-    private final Path imagesPath = Paths.get("images");
+    private final Path imagesPath;
+
+    public ImageService(@Value("${images.path}") String imagesPath) {
+        this.imagesPath = Paths.get(imagesPath);
+    }
 
     public byte[] get(String imageName) {
         Path imagePath = null;
