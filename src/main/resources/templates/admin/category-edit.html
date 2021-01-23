@@ -18,6 +18,7 @@
         <img th:if="${action.equals('edit')}"
              th:src="@{'/image/' + ${category.image}}" th:height="255" alt="Изображение не задано"><br/>
         <a th:text="${'Выбрать другое изображение'}" th:href="@{'/admin/image/category/' + ${category.id}}"></a>
+        <a th:text="Продукты" th:href="@{/admin/product/all(categoryId = ${category.id})}"></a>
     </div>
     <input th:type="submit" th:value="Сохранить"/>
 </form>

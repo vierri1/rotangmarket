@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Управление продуктами</title>
+</head>
+<body>
+<p th:hidden="${msg == null}" th:text="${msg}"></p>
+<a th:text="${'Панель администратора'}" th:href="@{'/admin'}"></a>
+<a th:text="${'Список категорий'}" th:href="@{'/admin/category/all'}"></a>
+<div>
+    <form th:action="@{all}" th:method="get">
+        <label>Категория:
+            <select name="categoryId" onchange="this.form.submit()">
+                <option value="">Выберите категорию</option>
+                <option th:each="category : ${categories}"
+                        th:text="${category.name}"
+                        th:value="${category.id}"
+                        th:selected="${selectedCategory != null && selectedCategory.id.equals(category.id)}"></option>
+            </select></label>
+    </form>
+</div>
+
+<div th:if="${selectedCategory != null}">
+    <table border="1">
+        <caption th:text="${'Список продуктов категории ' + selectedCategory.name}"></caption>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Изображения</th>
+            <th>Цена</th>
+            <th>Наличие</th>
+            <th></th>
+        </tr>
+        <tr th:each="product : ${products}">
+            <td><span th:text="${product.id}"></span></td>
+            <td><a th:href="@{'/admin/product/edit/' + ${product.id}}" th:text="${product.name}"></a></td>
+            <td><span th:text="${product.description}"></span></td>
+            <td><img th:each="image : ${product.images}"
+                     th:src="@{'/image/' + ${image.name}}" th:height="75" alt="Изображение не задано"/></td>
+            <td><span th:text="${product.price}"></span></td>
+            <td><span th:text="${product.stock ? 'В наличии' : 'Нет в наличии'}"></span></td>
+            <td><a th:text="Удалить" th:href="@{'/admin/product/delete/' + ${product.id}}"></a></td>
+        </tr>
+    </table>
+
+    <a th:text="Добавить" th:href="@{'/admin/product/add'}"></a>
+</div>
+
+</body>
+</html>
