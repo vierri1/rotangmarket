@@ -40,7 +40,7 @@ public class ImageAdminController {
         return "redirect:/admin/image/all";
     }
 
-    @GetMapping("delete/{imgName}")
+    @GetMapping("delete/{imgName:.+}")
     public String delete(@PathVariable String imgName,
                          RedirectAttributes redirectAttributes) {
         boolean deleted = imageService.remove(imgName);
